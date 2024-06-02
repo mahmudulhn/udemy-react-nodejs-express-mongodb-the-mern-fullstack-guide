@@ -1,12 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 
 import Users from './user/pages/Users';
-import { Redirect, Switch } from 'react-router-dom/cjs/react-router-dom.min';
 import NewPlace from './places/pages/NewPlace';
+import UserPlaces from './places/pages/UserPlaces';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 
-function App() {
+const App = () => {
   return (
     <Router>
       <MainNavigation />
@@ -14,6 +19,9 @@ function App() {
         <Switch>
           <Route path="/" exact>
             <Users />
+          </Route>
+          <Route path="/:userId/places" exact>
+            <UserPlaces />
           </Route>
           <Route path="/places/new" exact>
             <NewPlace />
@@ -23,6 +31,6 @@ function App() {
       </main>
     </Router>
   );
-}
+};
 
 export default App;
